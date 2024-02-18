@@ -36,23 +36,31 @@ content-type: application/json
 
 ####################################################################
 
-### ADD SINGLE USER 
+### ADD ADMIN USER 
 POST {{url}}/users
 content-type: application/json
 	
 {
-	"login": "bb", 
-	"hash": "wsfskjiweu29384sdfjslfjsdlfkjwoeifwjef",
-	"firstName": "Bernd",
-	"lastName": "Buchton",
-	"email": "bb@htl.com",
-	"address" : {
-		"street": "Holework Street 23",
-		"zipCode": 31239,
-		"city": "Birmingham"
-	}
+	"login": "ig", 
+	"hash": "",
+	"firstName": "Isabella",
+	"lastName": "Graves",
+	"accessGroups": "loggedInUsers, members, administrators",
+	"email": "ig@htl.com"
 }
 
+### ADD ANONYMOUS USER 
+POST {{url}}/users
+content-type: application/json
+	
+{
+	"login": "anonymousUser", 
+	"hash": "",
+	"firstName": "Anonymous",
+	"lastName": "User",
+	"accessGroups": "loggedOutUsers",
+	"email": ""
+}
 
 ### GET ALL USERS
 GET {{url}}/users
