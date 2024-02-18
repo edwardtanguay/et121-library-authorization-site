@@ -140,6 +140,7 @@ export const AppProvider: React.FC<IAppProvider> = ({ children }) => {
 	const handleLogout = (onLoggedOut: () => void) => {
 		localStorage.removeItem('token');
 		setCurrentUser(structuredClone(initialCurrentUser));
+		loadCurrentUser();
 		onLoggedOut();
 	}
 

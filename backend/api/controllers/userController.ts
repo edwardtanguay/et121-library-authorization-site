@@ -116,18 +116,21 @@ export const loginUser = async (req: any, res: express.Response) => {
 
 export const getCurrentUser = async (req: any, res: express.Response) => {
 	try {
+		const _anonymousUser = await User.findOne({ login: 'anonymousUser' });
+		const anonymousUser = tools.getCurrentUserFromUser(_anonymousUser);
 		jwt.verify(
 			(req as unknown as CustomRequest).token,
 			config.sessionSecret(),
 			(err: any) => {
 				if (err) {
-					res.status(403).send("invalid token");
+					res.json({
+						currentUser: anonymousUser
+					})
 				} else {
 					const data = jwttools.decodeJwt(
 						(req as unknown as CustomRequest).token
 					);
 					const currentUser = tools.getCurrentUserFromUser(data.user);
-					console.log(currentUser);
 					res.json({
 						currentUser 
 					});
