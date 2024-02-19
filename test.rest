@@ -49,6 +49,19 @@ content-type: application/json
 	"email": "ig@htl.com"
 }
 
+### ADD NORMAL MEMBER 
+POST {{url}}/users
+content-type: application/json
+	
+{
+	"login": "ls", 
+	"hash": "",
+	"firstName": "Leon",
+	"lastName": "Schmitt",
+	"accessGroups": "loggedInUsers, members",
+	"email": "ls@htl.com"
+}
+
 ### ADD ANONYMOUS USER 
 POST {{url}}/users
 content-type: application/json

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../AppContext";
 import { useNavigate } from "react-router-dom";
-import * as tools from '../tools';
+import * as tools from "../tools";
 
 export const Nav = () => {
 	const { handleLogout, currentUser } = useContext(AppContext);
@@ -18,19 +18,26 @@ export const Nav = () => {
 				<li>
 					<NavLink to="/books">Books</NavLink>
 				</li>
-				<li>
-					<NavLink to="/users">Users</NavLink>
-				</li>
-				{tools.isMemberOfAccessGroup(currentUser, 'loggedOutUsers') && (
+				{tools.isMemberOfAccessGroup(currentUser, "administrators") && (
+					<li>
+						<NavLink to="/users">Users</NavLink>
+					</li>
+				)}
+				{tools.isMemberOfAccessGroup(currentUser, "loggedOutUsers") && (
 					<li>
 						<NavLink to="/login">Login</NavLink>
 					</li>
 				)}
-				{tools.isMemberOfAccessGroup(currentUser, 'loggedInUsers') && (
+				{tools.isMemberOfAccessGroup(currentUser, "loggedInUsers") && (
 					<li>
-						<a className="cursor-pointer" onClick={() => handleLogout(() => {
-							navigate('/login');
-						})}>
+						<a
+							className="cursor-pointer"
+							onClick={() =>
+								handleLogout(() => {
+									navigate("/login");
+								})
+							}
+						>
 							Logout
 						</a>
 					</li>
