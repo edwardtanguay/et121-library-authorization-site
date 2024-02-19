@@ -6,18 +6,13 @@ export interface IBook {
 	available: boolean;
 }
 
-export interface IAddress {
-	street: string;
-	zipCode: string;
-	city: string;
-}
-
 export interface IUser {
 	_id: string;
+	login: string;
 	firstName: string;
 	lastName: string;
+	accessGroups: string;
 	email: string;
-	address: IAddress;
 }
 
 export interface ILoginFormData {
